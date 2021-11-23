@@ -92,9 +92,35 @@ window.GE.updateHeathBar = function (maxHealth, health) {
 	outer.data('total', maxHealth);
 	outer.data('value', health);
 	inner.css('width', barWidth + "%");
+	
+	var gameOver = document.getElementsByClassName('go');
+	var links = document.getElementsByTagName('tw-link');
+	
+	if(health>0){
+		for (var i = 0; i < links.length; i ++) {
+			console.log(links[i].innerHTML);
+			if(links[i].innerHTML == "GameOver"){
+				links[i].style.display = 'none';
+			}
+			else{
+				links[i].style.display = 'span';
+			}
+		}
+	}
+	else{
+		for (var i = 0; i < links.length; i ++) {
+			if(links[i].innerHTML == "GameOver"){
+				links[i].style.display = 'span';
+			}
+			else{
+				links[i].style.display = 'none';
+			}
+		}
+	}
+	
 };
 </script><tw-passagedata pid="1" name="Story Begins" tags="" position="698,699" size="100,100">In the heart of the deep jungles of Jartaka, there is said that an ancient treasure exists. It is said to conatin the Kundalas which were once possesed by the great Karna.
-In the nearby village two siblings Raj and Veerni. It has been there everlong dream to find the treasure.
+In the nearby village two siblings Dheer and Veerni. It has been there everlong dream to find the treasure.
 Dheer is stronger physically, good with handling heavy weapons
 Veerni is smaller but has the brains. She is good with coming up with quick solutions.
 [[Choose Dheer]]
@@ -111,7 +137,7 @@ What shoul I take with me?
 [[Choose large blunt axe]]</tw-passagedata><tw-passagedata pid="4" name="Choose a sharp small knife" tags="" position="1096,600" size="100,100">Whats the use of an axe if the edge is not sharp. You choose the knife. Veerni wont be able to carry the heavy axe along with her, so you leave it.
 [[Decide the route(Dheer)]] </tw-passagedata><tw-passagedata pid="5" name="Choose large blunt axe" tags="" position="1096,399" size="100,100">Knife was sharp, but you somehow you think the blunt axe would be a better choice for you. You give the small knife to Veerni.
 [[Decide the route(Dheer)]]
-(set: $axe to true)</tw-passagedata><tw-passagedata pid="6" name="Take a jungle survival guide" tags="" position="1097,997" size="100,100">This survival guide is gonna take up a lot of space in my bag. Even Dheer is against it. Is it gonna be worth the effort?
+(set: $axe to true)</tw-passagedata><tw-passagedata pid="6" name="Take a jungle survival guide" tags="" position="1088,977" size="100,100">This survival guide is gonna take up a lot of space in my bag. Even Dheer is against it. Is it gonna be worth the effort?
 (text-colour:green)
 [You obtained jungle survival guide(set: $book to true)
 You obtained small knife from Dheer](set: $knife to true)
@@ -138,21 +164,21 @@ A group of monkeys ambushes you and snatches all your food.
 All was quiet for some time. You are moving through the deep jungle now.Suddenly a crocodile attacks!
 (if:$book is true)[[Throw the book at the crocodile]]
 [[Protect yourself with knife which Dheer gave you]]
-[[Evade the attack, let Dheer handle it]]</tw-passagedata><tw-passagedata pid="11" name="Take the jungle route(Dheer)" tags="" position="1493,399" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="12" name="Take the river route(Dheer)" tags="" position="1495,598" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="13" name="Throw the book at the crocodile" tags="" position="1703,741" size="100,100">(set: $book to false)
+[[Evade the attack, let Dheer handle it]]</tw-passagedata><tw-passagedata pid="11" name="Take the jungle route(Dheer)" tags="" position="1488,358" size="100,100">[[Coming Soon]]</tw-passagedata><tw-passagedata pid="12" name="Take the river route(Dheer)" tags="" position="1495,598" size="100,100">[[Coming Soon]]</tw-passagedata><tw-passagedata pid="13" name="Throw the book at the crocodile" tags="" position="1675,767" size="100,100">(set: $book to false)
 Nothing good came of it, you just lot a great source of information
 The crocodile lunges at you
 (text-colour:red)[You lost the book 
-][[Protect yourself with knife which Dheer gave you]] </tw-passagedata><tw-passagedata pid="14" name="Protect yourself with knife which Dheer gave you" tags="" position="1680,935" size="100,100">The crocodile jumps at you, but you was quick enough to strike its eye with the knife. Dheer gives a sharp blow on the crocodiles head using the axe. The crocodile withdraws.
+][[Protect yourself with knife which Dheer gave you]] </tw-passagedata><tw-passagedata pid="14" name="Protect yourself with knife which Dheer gave you" tags="" position="1670,953" size="100,100">The crocodile jumps at you, but you was quick enough to strike its eye with the knife. Dheer gives a sharp blow on the crocodiles head using the axe. The crocodile withdraws.
 [[Get hold of the crocodile!!Dont let him escape]]
 [[The crocodile is leaving. You are safe now]]</tw-passagedata><tw-passagedata pid="15" name="Get hold of the crocodile!!Dont let him escape" tags="" position="1790,1197" size="100,100">&quot;What are you doing!!&quot;Shreiked Dheer. The crocodile turned and bit your legs before escaping into the waters.
 (text-colour:red)[You lost a lot of health]
 (set:$health to it -4)
-[[The crocodile is leaving. You are safe now]] </tw-passagedata><tw-passagedata pid="16" name="The crocodile is leaving. You are safe now" tags="" position="1888,894" size="100,100">Safe for the night. You lost your food when the crocodile attacked
+[[The crocodile is leaving. You are safe now]] </tw-passagedata><tw-passagedata pid="16" name="The crocodile is leaving. You are safe now" tags="" position="1915,897" size="100,100">Safe for the night. You lost your food when the crocodile attacked
 (if:$book is true)[[Refer the survival guide]]
 (if:$trap is true)[[Use the fish traps.Something will surely comeup]]
 (if:$trap is not true)[[You have no fishing gear, what to do?]]</tw-passagedata><tw-passagedata pid="17" name="Refer the survival guide" tags="" position="1985,1073" size="100,100">There are hundreds of pages containing ways to hunt and fish. But you dont have any tools or resources mentioned in the guide. So its a day without any food
 (text-colour:red)[You lose some health]
-(set $health to $health-2)
+(set: $health to $health-2)
 [[The Night in the Jungle]]</tw-passagedata><tw-passagedata pid="18" name="Use the fish traps.Something will surely comeup" tags="" position="2075,952" size="100,100">Your Fish Traps Worked. You got some fresh river fish. No way to cook, had to eat it raw. Still some food is better than no food.
 (set: $health to $maxHealth)
 [[The Night in the Jungle]]</tw-passagedata><tw-passagedata pid="19" name="The Night in the Jungle" tags="" position="2179,1100" size="100,100">Finally you reached near shore where the old temple with treasures is said to be. With the help of Dheer you tie up the boat. Its night now, so better to take shelter and rest.
@@ -173,7 +199,12 @@ Dheer cries you to climb the nearby tree. you are saved by luck alone
 Dheers knife comes in handy, but its not enough to hold the wolves. Dheer swings his axe around. The wolves seem afraid, the one attacking you snatches the knife.
 Dheers axe swinging had seriously injures some of them. They begin to retreat. You use this time to climb a nearby tree and reach safety.
 
-[[A New Day]]</tw-passagedata><tw-passagedata pid="25" name="A New Day" tags="" position="2477,1606" size="100,100">The morning came. After a quick breakfast you set out for the temple.</tw-passagedata><tw-passagedata pid="26" name="Chase after the monkeys" tags="" position="1343,1148" size="100,100">The monkeys are way faster and they can climb trees too. Its no use.
+[[A New Day]]</tw-passagedata><tw-passagedata pid="25" name="A New Day" tags="" position="2477,1606" size="100,100">The morning came. After a quick breakfast you set out for the temple.
+It is veru old temple. There is a sinister air around the temple, you get a feeling that something is lurking inside it.
+With trembling hearts both of you enter the temple. Its dark inside.Your matchsticks wont last long
+(if: $book is true)[[Use the rest of the pages to light up]]
+[[Continue to walk in the darkness]]
+[[Stay there , something will happen on its own]]</tw-passagedata><tw-passagedata pid="26" name="Chase after the monkeys" tags="" position="1343,1148" size="100,100">The monkeys are way faster and they can climb trees too. Its no use.
 [[Find Food]] </tw-passagedata><tw-passagedata pid="27" name="Hide behind Dheer" tags="" position="1625,1150" size="100,100">&quot;Hey they are just monkeys. Dont be this afraid!&quot; exclaimed Dheer. You felt embarressed&quot;
 [[Find Food]] </tw-passagedata><tw-passagedata pid="28" name="Throw your knife at the monkeys" tags="" position="1486,1150" size="100,100">By a stroke of luck or something your knife striked a monkey. the other monkeys are agitated. They attack as a group.
 (text-colour:red)[Bot of you are seriously injured and you lost your food]
@@ -196,7 +227,7 @@ Its a stroke of luck that the berries turned out to be non lethal. You both wake
 
 (if:$book is true)[[Refer the survival guide for &#39;survival&#39; tips]]
 [[Climb up the large tree, it looks safe]]
-[[Trees will contain dangerous snakes, lets stay in the ground]]</tw-passagedata><tw-passagedata pid="34" name="Header" tags="header" position="401.43829345703125,699.6737060546875" size="100,100">&lt;div class=&quot;flex header&quot;&gt;
+[[Trees will contain dangerous snakes, lets stay in the ground]]</tw-passagedata><tw-passagedata pid="34" name="Header" tags="header" position="401,699" size="100,100">&lt;div class=&quot;flex header&quot;&gt;
 	&lt;div&gt;
 	&lt;h2&gt;The Treasure of Jartaka&lt;/h2&gt;
 	&lt;/div&gt;
@@ -207,7 +238,9 @@ Its a stroke of luck that the berries turned out to be non lethal. You both wake
 	&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;br/&gt;</tw-passagedata><tw-passagedata pid="35" name="Footer" tags="footer" position="398.12586975097656,896.2095031738281" size="100,100">
+&lt;br/&gt;
+(if: (history:) contains &quot;Story Begins&quot;)[
+(if:$health&lt;=0)[(set:$health to $maxHealth)(goto: &quot;GameOver&quot;)]]</tw-passagedata><tw-passagedata pid="35" name="Footer" tags="footer" position="398,896" size="100,100">&lt;span class=&quot;go&quot;&gt;[[GameOver]]&lt;/span&gt;
 &lt;div class=&quot;flex&quot; style=&quot;height:70px&quot;&gt;
 	&lt;div&gt;(text-colour:cyan)[Items]&lt;/div&gt;
   (if: $book is true)[
@@ -218,7 +251,7 @@ Its a stroke of luck that the berries turned out to be non lethal. You both wake
 	&lt;img src = https://i.ibb.co/BBM3hBS/fishing-lure-1.png width=&quot;40&quot; height = &quot;40&quot; style=&quot;margin-left:20px&quot;&gt;]
 	&lt;/div&gt;
 (print: &quot;&lt;script&gt;GE.updateHeathBar(&quot; + (text: $maxHealth) + &quot;,&quot; + (text: $health) + &quot;);&quot;)
-(if:$health&lt;=0)[(live: 2s)[(goto: &quot;GameOver&quot;)]]</tw-passagedata><tw-passagedata pid="36" name="GameOver" tags="" position="671,904.5" size="100,100">(text-colour:red)[#&#39;&#39;GAME OVER&#39;&#39;]
+</tw-passagedata><tw-passagedata pid="36" name="GameOver" tags="" position="671,904" size="100,100">(text-colour:red)[#&#39;&#39;GAME OVER&#39;&#39;]
 (set:$health to $maxHealth)
 (set:$book to false)
 (set:$trap to false)
@@ -229,7 +262,53 @@ Its a stroke of luck that the berries turned out to be non lethal. You both wake
 [[The Night in the Jungle]] </tw-passagedata><tw-passagedata pid="38" name="Evade the attack, let Dheer handle it" tags="" position="1696,583" size="100,100">You leg got stuck in a crack while trying to evade. The crocodile caught it.Luckily Dheer was able to fend of the crocodile quickly using his axe.
 (text-colour:red)[You lost some health]
 (set: $health to it -1)
-[[The crocodile is leaving. You are safe now]] </tw-passagedata></tw-storydata>
+[[The crocodile is leaving. You are safe now]] 
+[[Get hold of the crocodile!!Dont let him escape]] </tw-passagedata><tw-passagedata pid="39" name="Coming Soon" tags="" position="1034,102" size="100,100">Dheers storyline is in progress.
+Please checkout Veernis path.
+More storylines would come in soon
+[[Story Begins]] </tw-passagedata><tw-passagedata pid="40" name="Use the rest of the pages to light up" tags="" position="2673,1777" size="100,100">The bright light from the flames eases your minds.As you walk forward you feel a dark prescense creeping.
+You see something!!Its looks terrifying and vicious.Both you run for your lives.
+You feel something clawing from the back.But it only scraped your skin.
+(text-color:red)[You lose some health](set:$health to it -1)
+You see a torch light ahead.The dark prescense has faded.
+In front of you there are two doors. Dheer asks you to make the decision.
+Before you could, your hear the vicious sound of the creature approaching. You have your faithful knife. What to do you do? Do you want to face the creature?
+[[Run Left]]
+[[Run Right]]
+[[Im not afraid!]]</tw-passagedata><tw-passagedata pid="41" name="Continue to walk in the darkness" tags="" position="2611,1572" size="100,100">As you walk , darkness creeps in. You feel the prescence of some terrying thing coming towards you.
+Suddenly you feel three claws slashing your torso. You dont have time to react
+(set: $health to it - 4)(text-colour:red)[You lose a lot of health]
+In an adrenaline rush both of you run deeper into the temple. You see a torch light ahead.
+The dark prescense has faded. You look at your injuries.They are severe. You wont be able to take anymore damage.
+In front of you there are two doors. Dheer asks you to make the decision.
+Before you could, your hear the vicious sound of the creature approaching. You have your faithful knife. What to do you do? Do you want to face the creature?
+[[Run Left]]
+[[Run Right]]
+[[Im not afraid!]]</tw-passagedata><tw-passagedata pid="42" name="Stay there , something will happen on its own" tags="" position="2625,1375" size="100,100">Nothings seems to happen. What to do?
+(if:visits is 2)
+[Suddenly!! something happened. You dont even know what...
+The light is fading...
+(set:$health to 0)
+
+
+]
+[[Stay there , something will happen on its own]] 
+[[Continue to walk in the darkness]] </tw-passagedata><tw-passagedata pid="43" name="Run Left" tags="" position="2891,1417" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="44" name="Run Right" tags="" position="2888,1695" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="45" name="Im not afraid!" tags="" position="2888,1553" size="100,100">You ready you knife, mustering up all your courage. Its just a stroke of luck now.
+(set:$random to (random:1,6))
+[[Attack]]</tw-passagedata><tw-passagedata pid="46" name="Attack" tags="" position="3071,1551" size="100,100">(if:$health is $maxHealth)[Your health is maxed. You just increased your chances of survival(set:$random to it + 2)]
+(if:$random &gt; 3)
+[Your strike was so quick that the creature was not able to evde it. You slashed into its head. 
+Suddenly..somethings happening...The creatures head is starting to disintegrate. Slowly slowy its entire body just turned to ashes.
+And in the ash pile you see a piece of paper. Its a map of the temple, with a X crossed on the hallway through the &#39;&#39;right&#39;&#39; path.
+&quot;Maybe that marks the treasure!!&quot;Exclaimed Dheer. You are glad that you musterd up the courage to face the creature.
+[[Run Left]] 
+[[Run Right]]
+]
+(else:)
+[Alas! The creature was quicker than you. It caught your hands before you could strike. You feel its claws piecing your stomach.
+Slowly everything fades away...
+(set:$health to 0)
+]</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">"use strict";var _slicedToArray=function(){return function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function(e,t){var n=[],r=!0,a=!1,i=void 0;try{for(var o,s=e[Symbol.iterator]();!(r=(o=s.next()).done)&&(n.push(o.value),!t||n.length!==t);r=!0);}catch(e){a=!0,i=e}finally{try{!r&&s.return&&s.return()}finally{if(a)throw i}}return n}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};function _defineProperty(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}!function(){
 /**
  * @license almond 0.3.3 Copyright jQuery Foundation and other contributors.
